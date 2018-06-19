@@ -13,6 +13,8 @@ public class GameController {
     private int scoreHomeTeam;
     private int scoreAwayTeam;
 
+    private int speed = 1;
+
     private Helper helper = new Helper();
 
     public GameController(Team homeTeam, Team awayTeam) {
@@ -87,6 +89,7 @@ public class GameController {
         } else {
             System.out.println("Round: " + i + " OOOOHH, " + this.awayTeam.getName() + " missed!");
         }
+        helper.sleep(speed);
         int[] a = {homeScore, awayScore};
         return a;
 
@@ -114,7 +117,7 @@ public class GameController {
         } else {
             System.out.println("No winner could be determined int he regular 90 minutes.. It's time for Penalties!");
         }
-        helper.sleep(1);
+        helper.sleep(speed);
     }
 
     private void gameProgress() {
@@ -145,13 +148,14 @@ public class GameController {
         } else {
             System.out.println("It has been an exiting 10 minutes, no goals but the game continues.. ");
         }
+        helper.sleep(speed);
     }
 
     private void startGame() {
         System.out.println("The game is starting");
         System.out.println("It's " + homeTeam.getName() + " against " + awayTeam.getName());
         System.out.println("This match is promising! ");
-        this.helper.sleep(1);
+        this.helper.sleep(speed);
     }
 
     public Team getHome_team() {

@@ -16,7 +16,7 @@ public class TournamentController {
 
     private Helper helper = new Helper();
 
-//    private GameController game = new GameController();
+    public static int speed = 1;
 
     public TournamentController() {
         this.setUp();
@@ -32,6 +32,7 @@ public class TournamentController {
         int i = 0;
 
         for (List<Team> tList : arr) {
+
             if (i < arr.length - 1) {
                 List<Team> nextList = arr[++i];
 
@@ -39,39 +40,26 @@ public class TournamentController {
                     GameController game = new GameController(tList.get(a), tList.get(tList.size() - 1 - a));
                     nextList.add(game.run());
                 }
-                
-                System.out.println("Whooo, that was exciting! ");
 
-                System.out.println("Here is a list of all the remaining participants:");
+                if( finalistTeams.size() != 1) {
+                    System.out.println("Whooo, that was exciting! ");
 
-                for (Team team : nextList) {
-                    System.out.println("- " + team.getName());
+                    System.out.println("Here is a list of all the remaining participants:");
+
+                    for (Team team : nextList) {
+                        System.out.println("- " + team.getName());
+                    }
+
+                    System.out.println("Let's continue to the next round!");
+                } else {
+                    System.out.println(finalistTeams.get(0).getName() + " HAS WON THE TOURNAMENT!!! CONGRATZZ!");
                 }
 
-                System.out.println("Let's continue to the next round!" + i);
-            } else {
-                System.out.println(this.finalistTeams.get(0).getName() + "HAS WON THIS TOURNAMENT!!!!!");
             }
 
-
+                helper.sleep(speed);
         }
     }
-
-}
-//
-//    private void playFirstRound() {
-//        for(int i = 0; i < 4; i++){
-//            GameController game = new GameController(this.initialTeams.get(i), this.initialTeams.get(7-i));
-//            secondRoundTeams.add(game.run());
-//        }
-//        System.out.println("Whooo, that was exciting! ");
-//        System.out.println("Here is a list of all the remaining participants:");
-//        for(Team team : secondRoundTeams) {
-//            System.out.println("- " + team.getName());
-//        }
-//        System.out.println("Let's continue to the half finals!");
-//
-//    }
 
     private void startTournament() {
         System.out.println("Welcome to this tournament, it will be very exiting!");
